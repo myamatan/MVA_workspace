@@ -1,0 +1,51 @@
+## Sample maker
+Executable = sampleMake.sh
+## TMVA
+#Executable = TMVA.sh
+#Executable = TMVA_SVM.sh
+## Make correlation
+#Executable = correlation.sh
+
+Universe   = vanilla
+Getenv  = true            # the environment variables will be copied.
+Error = out.error
+
+# comment out the followings if you don't need to save STDOUT/STDERR/CondorLog
+Log        = out.log
+Output        = test_2d.out
+
+#####################################################
+#Arguments = $(Process)
+#Queue 1
+
+### Sample Make ######
+# 1:loop
+# 2:true->sig, false->bkg
+# 3:0:_SRCR_
+# signal
+#Arguments = $(Process) true 0
+#Queue 350
+# bkg
+Arguments = $(Process) false 0
+Queue 10
+####################
+
+### TMVA ######
+# 1:loop
+# 2:0:_SRCR_
+#Arguments = $(Process) 0 
+#Queue 192
+#Queue 360
+#Queue 108
+####################
+
+##3 Correlation #####
+# 1:loop
+# 2:false->Apply to same sample, true->Apply to other sample
+# 3:0:_SRCR_
+#Arguments = $(Process) false 0
+#Queue 101
+#Arguments = $(Process) true 0
+#Queue 5698
+#143 99 110
+######################

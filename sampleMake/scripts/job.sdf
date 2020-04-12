@@ -1,0 +1,36 @@
+## Sample maker
+Executable = sampleMake.sh
+
+Universe   = vanilla
+Getenv  = true            # the environment variables will be copied.
+Error = out.error
+
+# comment out the followings if you don't need to save STDOUT/STDERR/CondorLog
+Log        = out.log
+Output        = test.out
+
+#####################################################
+#Arguments = $(Process)
+#Queue 1
+
+### Sample Make ######
+# 1:loop
+# 2:true->sig, false->bkg
+# 3:0:_SRCR_
+
+### angle MVA #######
+## signal
+#Arguments = $(Process) true 0
+#Queue 120
+## bkg
+#Arguments = $(Process) false 0
+#Queue 24
+
+### VBF jets MVA #######
+## signal
+#Arguments = $(Process) true 0
+#Queue 28
+## bkgArguments = $(Process) false 0
+Arguments = $(Process) false 0
+Queue 4
+####################

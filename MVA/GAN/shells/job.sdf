@@ -1,0 +1,14 @@
+## Sample maker
+Executable = runGAN.sh
+
+Universe   = vanilla
+Getenv  = true            # the environment variables will be copied.
+Error = out.error
+
+# comment out the followings if you don't need to save STDOUT/STDERR/CondorLog
+Log        = out.log
+Output        = test.out
+
+#####################################################
+Arguments = $(Process)
+Queue 1
